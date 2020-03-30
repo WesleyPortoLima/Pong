@@ -3,14 +3,13 @@ package game;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Player {
-
-	public boolean left, right;
+public class Enemy {
+public boolean left, right;
 	
-	public int x, y; 
 	public int width, height;
+	public double x, y;
 	
-	public Player(int x, int y) {
+	public Enemy(int x, int y) {
 		this.x = x;
 		this.y = y;
 		this.width = 40;
@@ -18,11 +17,7 @@ public class Player {
 	}
 	
 	public void tick() {
-		if (right) {
-			x+=3;
-		} else if (left) {
-			x-=3;
-		}
+		x += (Game.ball.x - x - 6) * 0.4;
 		
 		if (x + width > Game.WIDTH) {
 			x = Game.WIDTH - width;
@@ -32,7 +27,8 @@ public class Player {
 	}
 	
 	public void render(Graphics g) {
-		g.setColor(Color.blue);
-		g.fillRect(x, y, width, height);
+		g.setColor(Color.red);
+		g.fillRect((int) x, (int) y, width, height);
 	}
+
 }
